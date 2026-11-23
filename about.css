@@ -13,6 +13,11 @@ a {
 /* NAVIGATION */
 
 .about-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
     width: 100%;
     min-height: 85px;
     padding: 20px 5%;
@@ -21,6 +26,8 @@ a {
     justify-content: space-between;
     gap: 30px;
     box-sizing: border-box;
+
+    background: #f5f3ef;
 }
 
 .about-nav .logo {
@@ -63,6 +70,7 @@ a {
     justify-content: center;
     align-items: flex-start;
     box-sizing: border-box;
+    padding-top: 185px;
 }
 
 .about-hero h1 {
