@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-sRIlkxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+          crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+
+    <link href="styles.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/artspace-logo.png">
+
+    <title>ARTSPACE - Nature</title>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <a href="index.html" class="logo">ARTSPACE.</a>
+
+        <div class="nav-links">
+            <a href="index.html">Painting</a>
+            <a href="sculpture.html">Sculpture</a>
+            <a href="interior-design.html">Interior Design</a>
+            <a href="nature.html" class="active">Nature</a>
+            <a href="about.html">About</a>
+        </div>
+    </nav>
+
+    <section id="welcome">
+        <h1>NATURE.</h1>
+        <p>Some things are simply beyond our imagination.</p>
+    </section>
+
+    <section id="overview">
+        <h1>Beyond Creation</h1>
+        <p>A small glimpse of a world that needs no design.</p>
+    </section>
+
+    <!-- MOUNTAINS -->
+
+    <section id="mountains">
+        <div class="card painting-card">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/1_lake_louise_pano_2019.jpg"
+                 alt="Panoramic view of Lake Louise surrounded by mountains">
+
+            <div class="card-body">
+                <h1>Above the Clouds</h1>
+                <p>Mountains · The beauty of scale</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORESTS -->
+
+    <section id="forests">
+        <div class="card painting-card">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Landscape_of_a_wild_forest.jpg"
+                 alt="Sunlight filtering through a wild forest">
+
+            <div class="card-body">
+                <h1>Where Light Finds Its Way</h1>
+                <p>Forests · The beauty of life</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- OCEANS -->
+
+    <section id="oceans">
+        <div class="card painting-card">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Waves_in_sea.jpg"
+                alt="Ocean waves photographed from the shore">
+
+            <div class="card-body">
+                <h1>Endless Blue</h1>
+                <p>Oceans · The beauty of movement</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKY -->
+
+    <section id="sky">
+        <div class="card painting-card">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Clouds_on_the_sky.jpg"
+                 alt="Clouds stretching across the sky">
+
+            <div class="card-body">
+                <h1>A Painting Without a Painter</h1>
+                <p>Sky · The beauty of change</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WILDLIFE -->
+
+    <section id="wildlife">
+        <div class="card painting-card">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/001_Wild_Golden_Eagle_and_Majinghorn_Pfyn-Finges_Photo_by_Giles_Laurent.jpg"
+                 alt="Golden eagle in its natural mountain habitat">
+
+            <div class="card-body">
+                <h1>Untamed</h1>
+                <p>Wildlife · The beauty of being alive</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL THOUGHT -->
+
+    <section id="final">
+        <h1>
+            After all, the most beautiful things in this world
+            needn't be made by human hands.
+        </h1>
+
+        <p>Sometimes, all we have to do is look.</p>
+    </section>
+
+    <footer class="gallery-controls">
+        <button class="control-arrow" id="prev-slide">&#8592;</button>
+        <div class="slide-indicators"></div>
+        <button class="control-arrow" id="next-slide">&#8594;</button>
+    </footer>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
