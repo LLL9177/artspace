@@ -12,27 +12,27 @@ const indicatorContainer = document.querySelector(".slide-indicators");
 indicatorContainer.innerHTML = "";
 
 slides.forEach((slide, i) => {
-    const indicator = document.createElement("button");
+  const indicator = document.createElement("button");
 
-    indicator.classList.add("indicator");
-    indicator.dataset.slide = i;
+  indicator.classList.add("indicator");
+  indicator.dataset.slide = i;
 
-    indicator.addEventListener("click", () => {
-        goToSlide(i);
-    });
+  indicator.addEventListener("click", () => {
+    goToSlide(i);
+  });
 
-    indicatorContainer.appendChild(indicator);
+  indicatorContainer.appendChild(indicator);
 });
 
 const slideIndicators = [...indicatorContainer.children];
 
 function updateControls() {
-    slideIndicators.forEach((indicator, i) => {
-        indicator.classList.toggle("active", i === currentSlideIndex);
-    });
+  slideIndicators.forEach((indicator, i) => {
+    indicator.classList.toggle("active", i === currentSlideIndex);
+  });
 
-    prevButton.disabled = currentSlideIndex === 0;
-    nextButton.disabled = currentSlideIndex === slides.length - 1;
+  prevButton.disabled = currentSlideIndex === 0;
+  nextButton.disabled = currentSlideIndex === slides.length - 1;
 }
 
 // Initial slide
@@ -40,62 +40,61 @@ function updateControls() {
 slides[0].style.display = "flex";
 
 setTimeout(() => {
-    slides[0].classList.add("current-slide");
-    slides[0].style.transform = "translateY(0)";
+  slides[0].classList.add("current-slide");
+  slides[0].style.transform = "translateY(0)";
 
-    document.body.style.backgroundColor = "white";
+  document.body.style.backgroundColor = "white";
 
-    updateControls();
+  updateControls();
 }, 100);
 
 
 // Slide navigation
 
 async function goToSlide(targetIndex) {
-    if (
-        isSwitching ||
-        targetIndex < 0 ||
-        targetIndex >= slides.length ||
-        targetIndex === currentSlideIndex
-    ) return;
+  if (
+    isSwitching ||
+    targetIndex < 0 ||
+    targetIndex >= slides.length ||
+    targetIndex === currentSlideIndex
+  ) return;
 
-    isSwitching = true;
+  isSwitching = true;
 
-    const previousSlide = slides[currentSlideIndex];
-    const nextSlide = slides[targetIndex];
+  const previousSlide = slides[currentSlideIndex];
+  const nextSlide = slides[targetIndex];
 
-    // Close any open overlays
+  // Close any open overlays
 
-    document.querySelectorAll(".more-info").forEach(el => {
-        el.style.display = "none";
-        el.style.opacity = 0;
-    });
+  document.querySelectorAll(".more-info").forEach(el => {
+    el.classList.remove("active");
+  });
 
-    previousSlide.classList.remove("current-slide");
+  previousSlide.classList.remove("current-slide");
 
-    await new Promise(resolve => setTimeout(resolve, 400));
+  await new Promise(resolve => setTimeout(resolve, 400));
 
-    previousSlide.style.display = "none";
+  previousSlide.style.display = "none";
 
-    currentSlideIndex = targetIndex;
+  currentSlideIndex = targetIndex;
 
-    nextSlide.style.display = "flex";
-    nextSlide.style.transform = "translateY(30px)";
+  nextSlide.style.display = "flex";
+  nextSlide.style.transform = "translateY(30px)";
 
-    updateControls();
+  updateControls();
 
-    await new Promise(resolve => setTimeout(resolve, 20));
+  await new Promise(resolve => setTimeout(resolve, 20));
 
-    nextSlide.classList.add("current-slide");
-    nextSlide.style.transform = "translateY(0)";
+  nextSlide.classList.add("current-slide");
+  nextSlide.style.transform = "translateY(0)";
 
-    await new Promise(resolve => setTimeout(resolve, 400));
+  await new Promise(resolve => setTimeout(resolve, 400));
 
-    isSwitching = false;
+  isSwitching = false;
 }
 
 function switchSlide(next = true) {
-    goToSlide(currentSlideIndex + (next ? 1 : -1));
+  goToSlide(currentSlideIndex + (next ? 1 : -1));
 }
 
 
@@ -108,48 +107,39 @@ nextButton.addEventListener("click", () => switchSlide(true));
 // Keyboard controls
 
 document.addEventListener("keydown", e => {
-    if (e.key === "ArrowRight") switchSlide();
-    if (e.key === "ArrowLeft") switchSlide(false);
+  if (e.key === "ArrowRight") switchSlide();
+  if (e.key === "ArrowLeft") switchSlide(false);
 });
 
 
 // Read More
 
 document.querySelectorAll(".painting-info_read-more").forEach(button => {
-    button.addEventListener("click", () => {
-        const moreInfo = button.closest("section").querySelector(".more-info");
-        const paragraph = moreInfo.querySelector("p");
+  const moreInfo = button.closest("section").querySelector(".more-info");
 
-        moreInfo.style.display = "flex";
-        paragraph.style.transform = "translateY(30px)";
+  document.body.appendChild(moreInfo);
 
-        setTimeout(() => {
-            moreInfo.style.opacity = 1;
-            paragraph.style.transform = "translateY(0)";
-        }, 10);
-    });
+  button.addEventListener("click", () => {
+    moreInfo.classList.add("active");
+  });
 });
 
 
 // Close Read More
 
 document.querySelectorAll(".more-info_close-button").forEach(button => {
-    button.addEventListener("click", () => {
-        const moreInfo = button.closest(".more-info");
-
-        moreInfo.style.opacity = 0;
-        moreInfo.querySelector("p").style.transform = "translateY(150vh)";
-
-        setTimeout(() => {
-            moreInfo.style.display = "none";
-        }, 200);
-    });
+  button.addEventListener("click", () => {
+    button.closest(".more-info").classList.remove("active");
+  });
 });
 
+
+// Close when clicking the background
+
 document.querySelectorAll(".more-info").forEach(overlay => {
-    overlay.addEventListener("click", e => {
-        if (e.target === overlay) {
-            overlay.querySelector(".more-info_close-button").click();
-        }
-    });
+  overlay.addEventListener("click", e => {
+    if (e.target === overlay) {
+      overlay.classList.remove("active");
+    }
+  });
 });

@@ -8,12 +8,19 @@ body {
     overflow: hidden;
     background-color: black;
     transition: background-color 0.8s ease;
+    font-family: Georgia, serif;
+}
+
+img {
+    max-width: 100%;
+    object-fit: contain;
 }
 
 section {
     display: none;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    height: 100dvh;
 
     padding: 100px 5vw 110px;
 
@@ -25,78 +32,180 @@ section {
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.info-img {
-    border-radius: 20px;
-}
-
-.card {
-    border-radius: 20px;
-}
-
-.card img {
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
-
 .current-slide {
     opacity: 1;
 }
 
-@media (min-width: 640px) {
-    #tpom-painting.card-body {
-        color: red;
-        height:30vh;
-        width: 30vw;
-    }
+/* ============================= */
+/* NAVIGATION */
+/* ============================= */
+
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    width: 100%;
+    min-height: 85px;
+    padding: 20px 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    background: #f5f3ef;
 }
+
+.logo {
+    color: #252525;
+    font-family: Arial, sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.nav-links a {
+    position: relative;
+
+    color: #555;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #000;
+}
+
+.nav-links a.active::after {
+    content: "";
+
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: #000;
+}
+
+/* ============================= */
+/* WELCOME */
+/* ============================= */
 
 #welcome {
     transform: translateY(30px);
 }
 
 #welcome h1 {
-    font-size: 6em;
+    font-size: clamp(3.5rem, 10vw, 6rem);
+}
+
+#welcome h3 {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    text-align: center;
 }
 
 #welcome p {
     margin-top: 30px;
+    text-align: center;
 }
 
-img {
-    max-height: 100vh;
-    max-width: 100vw;
+/* ============================= */
+/* PAINTING CARDS */
+/* ============================= */
+
+.card {
+    width: auto;
+    max-width: 75vw;
+    max-height: 65vh;
+
+    overflow: hidden;
+    border-radius: 20px;
+    background: white;
 }
 
-#tpom-painting .card {
-    width: 60vw;
+.card img {
+    display: block;
+
+    width: auto;
+    height: auto;
+
+    max-width: 65vw;
+    max-height: 52vh;
+
+    object-fit: contain;
+
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
-#tpom-painting .card-body {
+.card-body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    padding: 20px;
+    text-align: center;
 }
 
-#tpom-info {
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-text {
+    color: #777;
+}
+
+/* ============================= */
+/* PAINTING INFORMATION */
+/* ============================= */
+
+#tpom-info,
+#ml-info,
+.painting-details {
     flex-direction: row;
     justify-content: space-around;
+    gap: 4vw;
 }
 
-#tpom-info img {
-    width: 40vw;
+.info-img {
+    width: auto;
+    max-width: 38vw;
+    max-height: 65vh;
+
+    object-fit: contain;
+    border-radius: 20px;
 }
 
 .painting-info {
     width: 42vw;
     max-height: 65vh;
+
     overflow-y: auto;
-    padding: 10px;
+    padding: 15px;
 }
 
-.painting-info p {
-    font-size: 16px;
-    line-height: 1.6;
+.painting-info_head {
+    margin-bottom: 15px;
 }
 
 .painting-info h1 {
@@ -105,182 +214,249 @@ img {
 
 .painting-info_artist-name {
     font-size: 17px;
+    color: #888;
 }
 
-#tpom-info .painting-info h1 {
-    font-size: 30px;
-}
-
-#tpom-info .painting-info_artist-name {
-    font-size: 17;
-}
-
-#tpom-info .painting-info p {
-    font-size: 20px;
+.painting-info p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
     margin-top: 15px;
 }
 
+.painting-info hr {
+    opacity: 0.3;
+}
+
 .painting-info_read-more {
-    background-color: transparent;
+    width: 100%;
+    height: 35px;
+
+    background: transparent;
     border: none;
     border-radius: 10px;
-    width: 100%;
-    height: 30px;
+
+    cursor: pointer;
     transition: transform 0.2s ease;
 }
 
 .painting-info_read-more:hover {
-    transform: translateY(5px), scale(110%);
+    transform: translateY(3px) scale(1.02);
 }
 
-#tpom-info .painting-info_head {
-    margin-bottom: 15px;
-}
+/* ============================= */
+/* MORE INFO POPUP */
+/* ============================= */
 
 .more-info {
-    display: none;
+    display: flex;
     position: fixed;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    padding: 100px 5vw 110px;
+    z-index: 2000;
 
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(15px);
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    box-sizing: border-box;
+    padding: 70px 20px 20px;
 
     justify-content: center;
     align-items: center;
 
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
     opacity: 0;
-    transition: opacity 0.2s ease;
-    z-index: 200;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 250ms ease,
+        visibility 250ms ease;
 }
+
+.more-info.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* POPUP CONTENT */
 
 .more-info p {
-    width: min(650px, 85vw);
-    max-height: 65vh;
+    position: relative;
+
+    width: min(650px, 100%);
+    max-height: calc(100dvh - 100px);
+
     overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
 
-    padding: 30px;
+    padding: 40px;
+
     border-radius: 20px;
-    background-color: white;
+    background: white;
 
-    line-height: 1.6;
+    font-family: Arial, sans-serif;
     font-size: 16px;
+    line-height: 1.7;
 
-    transform: translateY(30px);
-    transition: transform 0.2s ease;
+    transform: translateY(20px);
+    transition: transform 250ms ease;
 }
+
+.more-info.active p {
+    transform: translateY(0);
+}
+
+/* CLOSE BUTTON */
 
 .more-info_close-button {
     all: unset;
+
     position: absolute;
     top: 20px;
     right: 25px;
+    z-index: 10;
 
     color: white;
     font-size: 30px;
+
     cursor: pointer;
 }
 
-#ml-painting img {
-    height: 80vh;
+/* ============================= */
+/* MOBILE POPUP */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .more-info {
+        padding: 75px 5% 25px;
+    }
+
+    .more-info p {
+        width: 100%;
+        max-height: 100%;
+        padding: 25px 20px;
+
+        border-radius: 15px;
+
+        font-size: 0.95rem;
+        line-height: 1.65;
+    }
+
+    .more-info_close-button {
+        top: 20px;
+        right: 20px;
+        font-size: 28px;
+    }
 }
 
-#ml-info {
-    flex-direction: row;
-    justify-content: space-around;
+/* SMALL PHONES */
+
+@media (max-width: 380px) {
+
+    .more-info p {
+        padding: 20px 16px;
+        font-size: 0.9rem;
+    }
+
+    .more-info_close-button {
+        top: 15px;
+        right: 16px;
+        font-size: 26px;
+    }
 }
 
-#ml-info img {
-    width: 30vw;
-}
 
-.painting-card .card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.painting-details {
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.painting-details .info-img {
-    width: 40vw;
-}
-
-/* TOP NAVIGATION */
-
-.top-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    padding: 0 5vw;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.95);
-    color: black;
-}
-
-.logo {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-decoration: none;
-    color: black;
-}
-
-.nav-links {
-    display: flex;
-    gap: 35px;
-}
-
-.nav-links a {
+.more-info p {
     position: relative;
-    text-decoration: none;
-    color: #555;
-    font-size: 15px;
-    transition: color 0.2s ease;
+
+    width: min(650px, 100%);
+    max-height: 100%;
+    overflow-y: auto;
+
+    padding: 40px;
+
+    border-radius: 20px;
+    background: white;
+
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+
+    transform: translateY(15px);
+    transition: transform 0.2s ease;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-    color: black;
+/* CLOSE BUTTON */
+
+.more-info_close-button {
+    all: unset;
+
+    position: fixed;
+    top: 20px;
+    right: 25px;
+
+    z-index: 10;
+
+    color: white;
+    font-size: 30px;
+
+    cursor: pointer;
 }
 
-.nav-links a.active::after {
-    content: "";
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: black;
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .more-info {
+        padding: 65px 15px 20px;
+    }
+
+    .more-info p {
+        width: 100%;
+        max-height: 100%;
+
+        padding: 30px 22px;
+
+        border-radius: 15px;
+
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .more-info_close-button {
+        top: 15px;
+        right: 18px;
+
+        font-size: 27px;
+    }
 }
 
 
+/* ============================= */
 /* BOTTOM CONTROLS */
+/* ============================= */
 
 .gallery-controls {
     position: fixed;
     bottom: 25px;
     left: 50%;
+    z-index: 100;
+
     transform: translateX(-50%);
 
     display: flex;
     align-items: center;
     gap: 30px;
-
-    z-index: 100;
 }
 
 .slide-indicators {
@@ -296,15 +472,17 @@ img {
 
     border: none;
     border-radius: 50%;
-    background: #888;
 
+    background: #888;
     cursor: pointer;
+
     transition: all 0.3s ease;
 }
 
 .indicator.active {
     width: 28px;
     height: 4px;
+
     border-radius: 10px;
     background: white;
 }
@@ -312,8 +490,10 @@ img {
 .control-arrow {
     background: transparent;
     border: none;
+
     color: white;
     font-size: 25px;
+
     cursor: pointer;
     transition: transform 0.2s ease;
 }
@@ -322,66 +502,43 @@ img {
     transform: scale(1.2);
 }
 
-
+/* ============================= */
 /* NEXT PAGE */
+/* ============================= */
 
 .next-page {
     position: fixed;
     right: 5vw;
     bottom: 25px;
-
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
+    z-index: 100;
 
     display: flex;
     align-items: center;
     gap: 10px;
 
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+
     transition: gap 0.2s ease;
-    z-index: 100;
 }
 
 .next-page:hover {
     gap: 18px;
 }
 
-
-/* RESPONSIVENESS */
-
-@media (max-width: 640px) {
-    .top-nav {
-        padding: 0 20px;
-        height: 65px;
-    }
-
-    .nav-links {
-        gap: 15px;
-    }
-
-    .nav-links a {
-        font-size: 12px;
-    }
-
-    .logo {
-        font-size: 16px;
-    }
-
-    .gallery-controls {
-        bottom: 20px;
-        gap: 15px;
-    }
-
-    .next-page {
-        display: none;
-    }
-}
+/* ============================= */
+/* BOTTOM GRADIENT */
+/* ============================= */
 
 body::after {
     content: "";
+
     position: fixed;
     bottom: 0;
     left: 0;
+    z-index: 90;
 
     width: 100%;
     height: 180px;
@@ -394,37 +551,258 @@ body::after {
     );
 
     pointer-events: none;
-    z-index: 90;
 }
 
-/* PAINTING SLIDES */
+/* ============================= */
+/* TABLETS */
+/* ============================= */
 
-#tpom-painting .card,
-#ml-painting .card,
-.painting-card {
-    width: auto;
-    max-width: 75vw;
-    max-height: 65vh;
-    overflow: hidden;
+@media (max-width: 992px) {
+
+    .top-nav {
+        gap: 20px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+
+    #tpom-info,
+    #ml-info,
+    .painting-details {
+        gap: 3vw;
+    }
+
+    .painting-info {
+        width: 48vw;
+    }
 }
 
-#tpom-painting img,
-#ml-painting img,
-.painting-card img {
-    width: auto;
-    height: auto;
-    max-width: 65vw;
-    max-height: 52vh;
-    object-fit: contain;
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+@media (max-width: 768px) {
+    /* OVERVIEW SLIDE */
+
+    #overview {
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #overview h1,
+    #overview h2,
+    #overview p {
+        text-align: center;
+    }
+
+    /* NAVIGATION */
+
+    .top-nav {
+        min-height: 0;
+        padding: 15px 5% 12px;
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .logo {
+        font-size: 1.35rem;
+    }
+
+    .nav-links {
+        width: 100%;
+
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 22px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+
+        padding-bottom: 5px;
+
+        scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-links a {
+        flex-shrink: 0;
+        font-size: 0.85rem;
+    }
+
+    /* SLIDES */
+
+    section {
+        padding: 120px 6% 100px;
+    }
+
+    /* WELCOME */
+
+    #welcome {
+        transform: none;
+    }
+
+    #welcome h1 {
+        font-size: clamp(3.5rem, 15vw, 5rem);
+    }
+
+    #welcome h3 {
+        font-size: 1.15rem;
+        line-height: 1.5;
+    }
+
+    #welcome p {
+        font-size: 0.9rem;
+        margin-top: 20px;
+    }
+
+    /* PAINTING CARDS */
+
+    .card {
+        max-width: 90vw;
+        max-height: 70vh;
+        border-radius: 15px;
+    }
+
+    .card img {
+        max-width: 88vw;
+        max-height: 48vh;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-title {
+        font-size: 1.15rem;
+    }
+
+    /* INFORMATION SLIDES */
+
+    #tpom-info,
+    #ml-info,
+    .painting-details {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        padding: 115px 7% 100px;
+    }
+
+    .info-img {
+        width: auto;
+        max-width: 85vw;
+        max-height: 30dvh;
+        flex-shrink: 0;
+    }
+
+    .painting-info {
+        width: 100%;
+        max-height: none;
+
+        overflow: visible;
+        padding: 5px 0;
+    }
+
+    .painting-info h1 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .painting-info_artist-name {
+        font-size: 0.9rem;
+    }
+
+    .painting-info p {
+        font-size: 0.95rem;
+        line-height: 1.65;
+    }
+
+    .painting-info_head {
+        margin-bottom: 10px;
+    }
+
+    /* CONTROLS */
+
+    .gallery-controls {
+        bottom: 18px;
+        gap: 18px;
+    }
+
+    .slide-indicators {
+        gap: 10px;
+    }
+
+    .indicator {
+        width: 7px;
+        height: 7px;
+    }
+
+    .indicator.active {
+        width: 23px;
+        height: 4px;
+    }
+
+    .control-arrow {
+        font-size: 23px;
+    }
+
+    /* NEXT PAGE */
+
+    .next-page {
+        display: none;
+    }
+
+    /* GRADIENT */
+
+    body::after {
+        height: 100px;
+    }
 }
 
-/* INFO SLIDES */
+/* ============================= */
+/* SMALL PHONES */
+/* ============================= */
 
-#tpom-info img,
-#ml-info img,
-.painting-details .info-img {
-    width: auto;
-    max-width: 38vw;
-    max-height: 65vh;
-    object-fit: contain;
+@media (max-width: 380px) {
+
+    .nav-links {
+        gap: 17px;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+
+    .painting-info h1 {
+        font-size: 1.4rem;
+    }
+
+    .painting-info p {
+        font-size: 0.9rem;
+    }
+
+    .more-info p {
+        padding: 20px 16px;
+        font-size: 0.9rem;
+    }
+
+    .gallery-controls {
+        gap: 13px;
+    }
 }

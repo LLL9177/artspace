@@ -1,9 +1,18 @@
 /* GENERAL */
 
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: #f5f3ef;
     color: #252525;
     font-family: Georgia, serif;
+    overflow-x: hidden;
 }
 
 a {
@@ -21,11 +30,11 @@ a {
     width: 100%;
     min-height: 85px;
     padding: 20px 5%;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 30px;
-    box-sizing: border-box;
 
     background: #f5f3ef;
 }
@@ -51,7 +60,7 @@ a {
     color: #555;
     font-family: Arial, sans-serif;
     font-size: 0.9rem;
-    text-decoration: none;
+    white-space: nowrap;
     transition: color 0.2s ease;
 }
 
@@ -64,13 +73,12 @@ a {
 
 .about-hero {
     min-height: 75vh;
-    padding: 100px 10%;
+    padding: 185px 10% 100px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    box-sizing: border-box;
-    padding-top: 185px;
 }
 
 .about-hero h1 {
@@ -84,25 +92,6 @@ a {
 .about-hero p:last-child {
     max-width: 650px;
     font-family: Arial, sans-serif;
-}
-
-/* MOBILE */
-
-@media (max-width: 768px) {
-    .about-nav {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .about-nav .nav-links {
-        justify-content: flex-start;
-        gap: 12px 18px;
-    }
-
-    .about-hero {
-        min-height: 65vh;
-        padding: 80px 7%;
-    }
 }
 
 /* SECTIONS */
@@ -201,30 +190,179 @@ a {
     letter-spacing: -0.06em;
 }
 
-/* MOBILE */
+/* TABLETS */
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .about-nav {
-        align-items: flex-start;
-        flex-direction: column;
         gap: 20px;
     }
 
     .about-nav .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
+        gap: 16px;
     }
 
     .about-nav .nav-links a {
-        margin: 0;
+        font-size: 0.85rem;
     }
 
     .about-hero {
-        min-height: 65vh;
+        padding-left: 7%;
+        padding-right: 7%;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    /* NAVIGATION */
+
+    .about-nav {
+        min-height: 0;
+        padding: 15px 5% 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
     }
 
+    .about-nav .logo {
+        font-size: 1.35rem;
+    }
+
+    .about-nav .nav-links {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 22px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+
+        padding-bottom: 5px;
+        scrollbar-width: none;
+    }
+
+    .about-nav .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .about-nav .nav-links a {
+        font-size: 0.85rem;
+        flex-shrink: 0;
+    }
+
+    /* HERO */
+
+    .about-hero {
+        min-height: 65vh;
+        padding: 160px 7% 70px;
+    }
+
+    .about-hero h1 {
+        font-size: clamp(3.3rem, 12vw, 5.5rem);
+        margin: 15px 0 25px;
+    }
+
+    .about-hero p:last-child {
+        font-size: 1.1rem !important;
+        line-height: 1.6;
+    }
+
+    /* SECTIONS */
+
     .about-section {
-        padding: 65px 0;
+        padding: 60px 0;
+    }
+
+    .container {
+        padding-left: 7%;
+        padding-right: 7%;
+    }
+
+    .container .row {
+        --bs-gutter-x: 1.5rem;
+    }
+
+    h2.display-5 {
+        font-size: 2.5rem;
+    }
+
+    h2.display-4 {
+        font-size: 2.7rem;
+    }
+
+    /* COLLECTION */
+
+    .card-body {
+        padding: 25px !important;
+    }
+
+    .card-title {
+        font-size: 1.6rem;
+    }
+
+    .card {
+        border-radius: 0;
+    }
+
+    /* PHILOSOPHY */
+
+    .container-fluid > .container {
+        padding-top: 35px !important;
+        padding-bottom: 35px !important;
+    }
+
+    /* ACCORDION */
+
+    .accordion-button {
+        font-size: 1.05rem;
+        padding: 20px 10px;
+    }
+
+    .accordion-body {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        padding: 10px;
+    }
+
+    /* FOOTER */
+
+    footer {
+        padding: 65px 20px 30px !important;
+    }
+
+    footer h2 {
+        font-size: clamp(2.5rem, 11vw, 4rem) !important;
+    }
+
+    footer p {
+        font-size: 1rem !important;
+    }
+}
+
+/* SMALL PHONES */
+
+@media (max-width: 380px) {
+
+    .about-hero h1 {
+        font-size: 3rem;
+    }
+
+    .about-nav .nav-links {
+        gap: 17px;
+    }
+
+    .about-nav .nav-links a {
+        font-size: 0.8rem;
+    }
+
+    h2.display-5 {
+        font-size: 2.1rem;
+    }
+
+    h2.display-4 {
+        font-size: 2.3rem;
     }
 }
